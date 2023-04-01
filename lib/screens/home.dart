@@ -73,23 +73,48 @@ class Home extends StatelessWidget {
                 "CATEGORIES",
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  color: iconsColor,
+                  color: headerColor,
                   fontWeight: FontWeight.w600,
+                  fontSize: 13,
                 ),
               ),
               const SizedBox(
                 height: 30,
               ),
-              Row(
-                children: [
-                  CategoryCard(
-                    size: size,
-                    tasksNo: 34,
-                    categoryName: '',
-                    categoryColor: '',
-                  ),
-                ],
-              )
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    CategoryCard(
+                      size: size,
+                      tasksNo: 34,
+                      categoryName: 'Business',
+                      categoryColor: Colors.red,
+                    ),
+                    CategoryCard(
+                      size: size,
+                      tasksNo: 12,
+                      categoryName: 'Personal',
+                      categoryColor: Colors.red,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              const Text(
+                "TODAY'S TASKS",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: headerColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
             ],
           ),
         ),
@@ -110,15 +135,16 @@ class CategoryCard extends StatelessWidget {
   final Size size;
   final int tasksNo;
   final String categoryName;
-  final String categoryColor;
+  final Color categoryColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(right: 20),
       width: size.width * 0.5,
       decoration: BoxDecoration(
         // backgroundBlendMode: ,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
             color: iconsColor.withOpacity(0.1),
@@ -126,7 +152,7 @@ class CategoryCard extends StatelessWidget {
               5.0,
               5.0,
             ),
-            blurRadius: 10.0,
+            blurRadius: 5.0,
             spreadRadius: 2.0,
           ),
           const BoxShadow(
@@ -156,8 +182,8 @@ class CategoryCard extends StatelessWidget {
               categoryName,
               style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
             ),
-            const Divider(
-              color: Colors.blue,
+            Divider(
+              color: categoryColor,
             )
           ],
         ),
