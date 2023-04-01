@@ -106,7 +106,7 @@ class Home extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 35,
             ),
             const Text(
               "TODAY'S TASKS",
@@ -118,12 +118,10 @@ class Home extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 25,
             ),
-            Expanded(
-              child: Container(
-                child: TaskList(),
-              ),
+            const Expanded(
+              child: TaskList(),
             ),
           ],
         ),
