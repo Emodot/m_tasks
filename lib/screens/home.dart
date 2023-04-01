@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:m_tasks/constant.dart';
+import 'package:m_tasks/widgets/task_list.dart';
+
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -130,36 +132,8 @@ class Home extends StatelessWidget {
   }
 }
 
-class TaskList extends StatelessWidget {
-  const TaskList({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: const <Widget>[
-        TaskTile(),
-        TaskTile(),
-        TaskTile(),
-      ],
-    );
-  }
-}
 
-class TaskTile extends StatelessWidget {
-  const TaskTile({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const ListTile(
-      leading: Checkbox(value: false, onChanged: null,),
-      title: Text("This is a Task"),
-    );
-  }
-}
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
