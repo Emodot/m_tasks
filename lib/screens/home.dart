@@ -52,73 +52,111 @@ class Home extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "What's up, Joy!",
-                style: TextStyle(
-                  color: Color(0xFF28315B),
-                  fontWeight: FontWeight.w800,
-                  fontSize: 27,
-                ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "What's up, Joy!",
+              style: TextStyle(
+                color: Color(0xFF28315B),
+                fontWeight: FontWeight.w800,
+                fontSize: 27,
               ),
-              const SizedBox(
-                height: 30,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const Text(
+              "CATEGORIES",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                color: headerColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 13,
               ),
-              const Text(
-                "CATEGORIES",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  color: headerColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 13,
-                ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  CategoryCard(
+                    size: size,
+                    tasksNo: 34,
+                    categoryName: 'Business',
+                    categoryColor: Colors.red,
+                  ),
+                  CategoryCard(
+                    size: size,
+                    tasksNo: 12,
+                    categoryName: 'Personal',
+                    categoryColor: Colors.red,
+                  ),
+                ],
               ),
-              const SizedBox(
-                height: 30,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const Text(
+              "TODAY'S TASKS",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                color: headerColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 13,
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    CategoryCard(
-                      size: size,
-                      tasksNo: 34,
-                      categoryName: 'Business',
-                      categoryColor: Colors.red,
-                    ),
-                    CategoryCard(
-                      size: size,
-                      tasksNo: 12,
-                      categoryName: 'Personal',
-                      categoryColor: Colors.red,
-                    ),
-                  ],
-                ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Expanded(
+              child: Container(
+                child: TaskList(),
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              const Text(
-                "TODAY'S TASKS",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  color: headerColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 13,
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class TaskList extends StatelessWidget {
+  const TaskList({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: const <Widget>[
+        TaskTile(),
+        TaskTile(),
+        TaskTile(),
+      ],
+    );
+  }
+}
+
+class TaskTile extends StatelessWidget {
+  const TaskTile({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const ListTile(
+      leading: Checkbox(value: false, onChanged: null,),
+      title: Text("This is a Task"),
     );
   }
 }
