@@ -48,7 +48,7 @@ class AddTask extends StatelessWidget {
                   style: ButtonStyle(
                     // borderRadius: BorderRadius.all(radius),
                     backgroundColor: MaterialStateProperty.all(
-                      const Color.fromARGB(255, 0, 132, 255),
+                      buttonColor,
                     ),
                     padding: MaterialStateProperty.all(
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
