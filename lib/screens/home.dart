@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:m_tasks/constant.dart';
+import 'package:m_tasks/screens/add_task.dart';
 import 'package:m_tasks/widgets/task_list.dart';
 
 class Home extends StatelessWidget {
@@ -11,123 +12,136 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        // title: const Text('mTasks'),
-        elevation: 0,
-        // toolbarHeight: 70,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(25),
+    return GestureDetector(
+      onTap: () {
+        // print("TAP");
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          // title: const Text('mTasks'),
+          elevation: 0,
+          // toolbarHeight: 70,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(25),
+            ),
           ),
-        ),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.menu,
-            color: iconsColor,
-          ),
-          tooltip: 'Menu Icon',
-          onPressed: () {},
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
+          leading: IconButton(
+            icon: const Icon(
+              Icons.menu,
+              color: iconsColor,
+            ),
+            tooltip: 'Menu Icon',
             onPressed: () {},
-            icon: SvgPicture.asset(
-              "assets/icons/MagnifyingGlass.svg",
-              width: 20,
-              colorFilter: const ColorFilter.mode(
-                iconsColor,
-                BlendMode.srcIn,
-              ),
-            ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset(
-              "assets/icons/BellSimple.svg",
-              width: 20,
-              colorFilter: const ColorFilter.mode(
-                iconsColor,
-                BlendMode.srcIn,
+          centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset(
+                "assets/icons/MagnifyingGlass.svg",
+                width: 20,
+                colorFilter: const ColorFilter.mode(
+                  iconsColor,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(context: context, builder: (context) => Container());
-        },
-        child: const Icon(Icons.add),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "What's up, David!",
-              style: TextStyle(
-                color: Color(0xFF28315B),
-                fontWeight: FontWeight.w800,
-                fontSize: 27,
+            IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset(
+                "assets/icons/BellSimple.svg",
+                width: 20,
+                colorFilter: const ColorFilter.mode(
+                  iconsColor,
+                  BlendMode.srcIn,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            const Text(
-              "CATEGORIES",
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                color: headerColor,
-                fontWeight: FontWeight.w600,
-                fontSize: 13,
-              ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  CategoryCard(
-                    size: size,
-                    tasksNo: 34,
-                    categoryName: 'Business',
-                    categoryColor: Colors.red,
-                  ),
-                  CategoryCard(
-                    size: size,
-                    tasksNo: 12,
-                    categoryName: 'Personal',
-                    categoryColor: Colors.red,
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 35,
-            ),
-            const Text(
-              "TODAY'S TASKS",
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                color: headerColor,
-                fontWeight: FontWeight.w600,
-                fontSize: 13,
-              ),
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            const Expanded(
-              child: TaskList(),
             ),
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+              // isScrollControlled: true,
+              context: context,
+              builder: (context) => const AddTask(),
+            );
+          },
+          child: const Icon(Icons.add),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "What's up, David!",
+                style: TextStyle(
+                  color: Color(0xFF28315B),
+                  fontWeight: FontWeight.w800,
+                  fontSize: 27,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              const Text(
+                "CATEGORIES",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: headerColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    CategoryCard(
+                      size: size,
+                      tasksNo: 34,
+                      categoryName: 'Business',
+                      categoryColor: Colors.red,
+                    ),
+                    CategoryCard(
+                      size: size,
+                      tasksNo: 12,
+                      categoryName: 'Personal',
+                      categoryColor: Colors.blue,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 35,
+              ),
+              const Text(
+                "TODAY'S TASKS",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: headerColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              const Expanded(
+                child: TaskList(),
+              ),
+            ],
+          ),
         ),
       ),
     );
