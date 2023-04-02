@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:m_tasks/constant.dart';
+import 'package:m_tasks/screens/add_task.dart';
 import 'package:m_tasks/widgets/task_list.dart';
 
 class Home extends StatelessWidget {
@@ -58,7 +59,11 @@ class Home extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showModalBottomSheet(context: context, builder: (context) => Container());
+          showModalBottomSheet(
+            //  isScrollControlled: true,
+            context: context,
+            builder: (context) => const AddTask(),
+          );
         },
         child: const Icon(Icons.add),
       ),

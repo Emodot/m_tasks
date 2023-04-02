@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:m_tasks/constant.dart';
+import 'package:roundcheckbox/roundcheckbox.dart';
 
 class TaskTile extends StatelessWidget {
   const TaskTile({
@@ -23,11 +24,11 @@ class TaskTile extends StatelessWidget {
         ],
       ),
       child: const ListTile(
-        // shape: RoundedRectangleBorder(
-        //   // side:BorderSide(width: 0)
-        //   BoxShadow()
-        // ),
-        leading: Checkbox(value: false, onChanged: null,),
+        leading: RoundCheckBox(
+          onTap: null,
+          size: 20,
+          uncheckedColor: Colors.transparent,
+        ),
         title: Text("This is a Task"),
       ),
     );
