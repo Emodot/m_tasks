@@ -5,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:m_tasks/constant.dart';
 import 'package:m_tasks/widgets/task_list.dart';
 
-
 class Home extends StatelessWidget {
   const Home({super.key});
 
@@ -19,7 +18,10 @@ class Home extends StatelessWidget {
         elevation: 0,
         // toolbarHeight: 70,
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25))),
+          borderRadius: BorderRadius.all(
+            Radius.circular(25),
+          ),
+        ),
         leading: IconButton(
           icon: const Icon(
             Icons.menu,
@@ -55,7 +57,9 @@ class Home extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(context: context, builder: (context) => Container());
+        },
         child: const Icon(Icons.add),
       ),
       body: Padding(
@@ -64,7 +68,7 @@ class Home extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "What's up, Joy!",
+              "What's up, David!",
               style: TextStyle(
                 color: Color(0xFF28315B),
                 fontWeight: FontWeight.w800,
@@ -129,9 +133,6 @@ class Home extends StatelessWidget {
     );
   }
 }
-
-
-
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
