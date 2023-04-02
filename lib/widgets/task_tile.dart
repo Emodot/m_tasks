@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:m_tasks/constant.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
-class TaskTile extends StatelessWidget {
+class TaskTile extends StatefulWidget {
   const TaskTile({
     super.key,
   });
+
+  @override
+  State<TaskTile> createState() => _TaskTileState();
+}
+
+class _TaskTileState extends State<TaskTile> {
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +22,37 @@ class TaskTile extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: const ListTile(
-        leading: RoundCheckBox(
-          onTap: null,
-          size: 20,
-          uncheckedColor: Colors.transparent,
+      child: ListTile(
+        leading: TaskCheckbox(isChecked),
+        // RoundCheckBox(
+        //   onTap: null,
+        //   size: 20,
+        //   uncheckedColor: Colors.transparent,
+        // ),
+        title: const Text(
+          "This is a Task",
+          style: TextStyle(decoration: TextDecoration.lineThrough),
         ),
-        title: Text("This is a Task"),
       ),
+    );
+  }
+}
+
+class TaskCheckbox extends StatelessWidget {
+  final bool checkboxState;
+
+  TaskCheckbox(this.checkboxState);
+
+  @override
+  Widget build(BuildContext context) {
+    return Checkbox(
+      activeColor: buttonColor,
+      value: checkboxState,
+      onChanged: (newValue) {
+        // setState(() {
+        //   checkboxState = newValue!;
+        // });
+      },
     );
   }
 }
