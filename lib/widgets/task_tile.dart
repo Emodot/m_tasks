@@ -3,9 +3,9 @@ import 'package:m_tasks/constant.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
 class TaskTile extends StatefulWidget {
-  const TaskTile({
-    super.key,
-  });
+  // const TaskTile({
+  //   super.key,
+  // });
 
   @override
   State<TaskTile> createState() => _TaskTileState();
@@ -23,15 +23,23 @@ class _TaskTileState extends State<TaskTile> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: ListTile(
-        leading: TaskCheckbox(isChecked),
+        leading: TaskCheckbox(
+          checkboxState: isChecked,
+          toggleCheckbox: (checkboxState) {
+            setState(() {
+              isChecked = checkboxState!;
+            });
+          },
+        ),
         // RoundCheckBox(
         //   onTap: null,
         //   size: 20,
         //   uncheckedColor: Colors.transparent,
         // ),
-        title: const Text(
+        title: Text(
           "This is a Task",
-          style: TextStyle(decoration: TextDecoration.lineThrough),
+          style: TextStyle(
+              decoration: isChecked ? TextDecoration.lineThrough : null),
         ),
       ),
     );
@@ -40,19 +48,20 @@ class _TaskTileState extends State<TaskTile> {
 
 class TaskCheckbox extends StatelessWidget {
   final bool checkboxState;
+  final void Function(bool?) toggleCheckbox;
 
-  TaskCheckbox(this.checkboxState);
+  TaskCheckbox({
+    required this.checkboxState,
+    required this.toggleCheckbox,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Checkbox(
+      shape: const CircleBorder(),
       activeColor: buttonColor,
       value: checkboxState,
-      onChanged: (newValue) {
-        // setState(() {
-        //   checkboxState = newValue!;
-        // });
-      },
+      onChanged: toggleCheckbox,
     );
   }
 }

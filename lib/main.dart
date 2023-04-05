@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:m_tasks/screens/home.dart';
+import 'package:m_tasks/widgets/unfocus.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,13 +12,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'mTasks',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Unfocus(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'mTasks',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const Home(),
       ),
-      home: const Home(),
     );
   }
 }
