@@ -9,16 +9,19 @@ class AddTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // margin: const EdgeInsets.only(top: 50),
+      margin: const EdgeInsets.only(top: 50),
       child: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
           children: [
             Row(
-              children: const [
-                Spacer(),
-                Icon(
-                  Icons.close,
+              children: [
+                const Spacer(),
+                IconButton(
+                  onPressed: Navigator.of(context).pop,
+                  icon: const Icon(
+                    Icons.close,
+                  ),
                 ),
               ],
             ),
